@@ -1,21 +1,26 @@
-name: Autoformat
-on: 
-   push:
-   workflow_dispatch:
+name: Continuous Integration
+
+# This action works with pull requests and pushes
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
 jobs:
-  autoformat_job:
+  prettier:
     runs-on: ubuntu-latest
-    name: Automatic formatting
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Autoformat
-      id: format
-      uses: SKIRT/auto-format@master
-    - name: Autocommit
-      if: steps.format.outputs.status == 'changed'
-      run: |
-        git config --global user.name 'Aatmaj-Zephyr'
-        git config --global user.email 'Aatmaj-Zephyr@users.noreply.github.com'
-        git commit -am "Autoformat"
-        git push
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.2
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write **/*.{cpp,md}
