@@ -1,18 +1,11 @@
-name: Cache Image
+name: Code Formatter
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - master
 jobs:
-  image-cache:
-    name: Cache Image
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: whoan/docker-build-with-cache-action@v4
-      with:
-        image_name: andrewgaspar/cpp-auto-formatter-cache
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-        push_git_tag: true
+  clang-format:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - uses: AutoModality/action-ros-clang-format@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
