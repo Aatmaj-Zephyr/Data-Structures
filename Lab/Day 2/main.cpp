@@ -16,8 +16,8 @@ class stack_element{
     stack_element *next;
     int value;
     
-    stack_element(){;
-    
+    stack_element(){
+        
     }
     stack_element(stack_element next_element, int value_){
     next=&next_element;
@@ -34,8 +34,8 @@ class stack_element{
      stack_element* get_next(){
         return next;
     }
-    void point(stack_element next_element){
-    next=&next_element;
+    void point(stack_element* next_element){
+    next=next_element;
     }
     void print(){
         cout<<"\n"<<value;
@@ -52,31 +52,40 @@ class stack_element{
     
     stack_element top;
    stack(){
-       top.point(null);
+      // top = new stack_element();
+       //null = new stack_element();
+       top.point(&null);
        null.set_value(0);
       // null.point(NULL)
         top.set_value(100);
    }
 void push(int value){
- stack_element *s= new stack_element(*top.get_next(),value);
- top.point(*s);
+   // print();
+ stack_element s;
+ s.set_value(value);
+ s.point(top.get_next());
+ 
+ top.point(&s);
+
 }
 int pop(){
     int temp =top.get_next()->get_value();
-    top.point(*top.get_next());
+    top.point(top.get_next()->get_next());
     cout<<"\n"<<temp;
     return temp;
 }
 void print(){
-    top.get_value();
-     stack_element *p;
-     p=&top;
-    /* while(p!=&null){
-         p->print();
-         p=p->get_next();
-     }*/
+     stack_element p;
+     p.point(&top);
+   //  while(&*p.get_next()!=&null){
+         for (int i=10;i>=0;i--){
+    int temp2 =p.get_next()->get_value();
+    cout<<temp2<<"\n";
+         p.point(p.get_next()->get_next());
+     }
+     delete &p;
     //top.get_next().print();
-    top.print();
+   // top.print();
 }
 };
 
@@ -86,11 +95,10 @@ int main()
     stack my_stack;
     my_stack.push(2);
     my_stack.push(3);
-    my_stack.pop();
     my_stack.push(5);
     my_stack.pop();
-    my_stack.pop();
-   // my_stack.print();
+     my_stack.pop();
+  //  my_stack.print();
     
     /*for(int i=10;i<=0;i--){
         stack_element temp;
@@ -100,4 +108,3 @@ int main()
    
     return 0;
 }
-
