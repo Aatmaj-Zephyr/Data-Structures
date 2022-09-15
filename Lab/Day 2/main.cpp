@@ -61,11 +61,12 @@ class stack_element{
    }
 void push(int value){
    // print();
- stack_element s;
- s.set_value(value);
- s.point(top.get_next());
- 
- top.point(&s);
+  stack_element *s = new stack_element();
+  cout<<"\n"<<s->value;
+
+ s->set_value(value);
+ s->point(top.get_next());
+ top.point(s);
 
 }
 int pop(){
@@ -78,9 +79,9 @@ void print(){
      stack_element p;
      p.point(&top);
    //  while(&*p.get_next()!=&null){
-         for (int i=10;i>=0;i--){
+         for (int i=5;i>=0;i--){
     int temp2 =p.get_next()->get_value();
-    cout<<temp2<<"\n";
+    cout<<"\n"<<temp2;
          p.point(p.get_next()->get_next());
      }
      delete &p;
@@ -93,12 +94,14 @@ int main()
 {
     cout<<"Hello World";
     stack my_stack;
-    my_stack.push(2);
+   // my_stack.push(2);
     my_stack.push(3);
+    
     my_stack.push(5);
-    my_stack.pop();
-     my_stack.pop();
-  //  my_stack.print();
+   my_stack.pop();
+   my_stack.pop();
+
+    my_stack.print();
     
     /*for(int i=10;i<=0;i--){
         stack_element temp;
