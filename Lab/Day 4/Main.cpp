@@ -19,7 +19,7 @@ class queue{
       bottom = 0;
   }
   void add(int a){
-      if(top>Size){
+      if((top-1)>Size){
           cout<<"Overflow"<<"\n";
           
       }else{
