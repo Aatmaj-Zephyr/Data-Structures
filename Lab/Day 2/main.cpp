@@ -63,7 +63,7 @@ int pop(){
     return temp;
 }
 void peek(){
-    cout<<"The last element is "<<top.get_next->get_value();
+    cout<<"The last element is "<<top.get_next()->get_value();
 }
 void print(){
      cout<<"\n"<<"stack contents are-- ";
