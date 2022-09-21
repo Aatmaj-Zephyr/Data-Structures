@@ -47,7 +47,14 @@ class stack_element{
        top.point(&null);
       
    }
+   bool empty(){
+       if(&null==top.get_next()){
+           return true;
+       }
+       return false;
+   }
 void push(int value){
+    
   stack_element *s = new stack_element();
 
  s->set_value(value);
@@ -57,10 +64,13 @@ void push(int value){
 
 }
 int pop(){
+    if(empty()==false){
     int temp =top.get_next()->get_value();
     top.point(top.get_next()->get_next());
     cout<<"\n"<<temp<<" is popped.";
     return temp;
+}
+    cout<<"\n"<<"underflow";
 }
 void peek(){
     cout<<"The last element is "<<top.get_next()->get_value();
@@ -83,12 +93,13 @@ int main()
 {
     cout<<"Hello World";
     stack my_stack;
+    
     my_stack.push(2);
     my_stack.push(3);
     
     my_stack.push(5);
     my_stack.pop();
-    my_stack.pop();
+    my_stack.pop();  my_stack.pop();  my_stack.pop();
     my_stack.push(7);
     my_stack.push(5);
 
