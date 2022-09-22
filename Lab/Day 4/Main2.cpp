@@ -1,91 +1,118 @@
 /******************************************************************************
-
+priority queue.
 
 *******************************************************************************/
 #include <iostream>
 
 using namespace std;
-class queue_element{
-    public:
-  int priority;
-  string name;
-  queue_element(){
-      //default constructor
+class queueElement
+{
+public:
+  int queueElementPriority;
+  string queueElementStringValue;
+    queueElement ()
+  {
+    //default constructor
   }
-  queue_element(string a,int p){
-      priority = p;
-      name = a;
+  queueElement (string queueElementStringValue, int queueElementPriority)
+  {
+    this->queueElementStringValue = queueElementStringValue;
+
+    this->queueElementPriority = queueElementPriority;
   }
 };
-class queue{
-      public:
 
-  queue_element *arr;
+class queue
+{
+public:
+
+  queueElement * queueArray;
   int top;
   int bottom;
-  int Size;
-  public:
-  queue(){
-      //default constructor
+  int size;
+public:
+    queue ()
+  {
+    //default constructor
   }
-  queue(int size){
-      arr = new queue_element[size];
-      Size=size;
-      top=0;
-      bottom = 0;
+  queue (int size)
+  {
+    queueArray = new queueElement[size];
+    this->size = size;
+    top = 0;
+    bottom = 0;
   }
-  void add(string name,int priority){
-      if((top)>=Size){
-          cout<<"Overflow"<<"\n";
-          
-      }else{
-          
-      queue_element *a= new queue_element(name,priority);
-    
-          arr[top]=*a;
-          top++;
-          sort();
-      }}
-      
-   void sort(){
-       if(top>1){
-       for( int temp=top-1;temp>0;temp--){
-       if(arr[temp].priority<arr[temp-1].priority){
-           //swap;
-           queue_element temp2=arr[temp];
-           arr[temp]=arr[temp-1];
-           arr[temp-1]=temp2;}
-       }}
-   }   
-  queue_element pop(){
-      if(bottom==top){
-          cout<<"underflow"<<"\n";
-          top=0;
-          bottom=0;
-          
-      }else{
-      
-      bottom++;
-      return arr[bottom-1];//alternative to temp method of removal
+  void add (string queueElementStringValue, int queueElementPriority)
+  {
+    if ((top) >= size)
+      {
+	cout << "Overflow" << "\n";
+
+      }
+    else
+      {
+
+	queueElement *elementToBeAdded = new queueElement (queueElementStringValue, queueElementPriority);
+
+	queueArray[top] = *elementToBeAdded;
+	top++;
+	sort ();
       }
   }
-  void display(){
-      for (int i= bottom;i<top;i++){
-          cout<<arr[i].name<<" , ";
+
+  void sort ()
+  {
+    if (top > 1)
+      {
+	for (int i = top - 1; i > 0; i--)
+	  {
+	    if (queueArray[i].queueElementPriority < queueArray[i - 1].queueElementPriority)
+	      {
+		//swap;
+		queueElement temp = queueArray[i];
+		queueArray[i] = queueArray[i - 1];
+		queueArray[i - 1] = temp;
+	      }
+	  }
       }
-      cout<<"\n";
+  }
+  queueElement pop ()
+  {
+    if (bottom == top)
+      {
+	cout << "underflow" << "\n";
+	top = 0;
+	bottom = 0;
+
+      }
+    else
+      {
+
+	bottom++;
+	return queueArray[bottom - 1];	//alternative to temp method of removal
+      }
+  }
+  void display ()
+  {
+    for (int i = bottom; i < top; i++)
+      {
+	cout << queueArray[i].queueElementStringValue << " , ";
+      }
+    cout << "\n";
   }
 };
-int main()
-{  
-    queue *my_queue = new queue(4);
-    my_queue->add("enid blyton",4);
-    my_queue->add("Harry potter",2);
-    my_queue->add("sherlock homes",1);
-         my_queue->add("pokemon",3);
-         
 
-    my_queue->display();
-  
-    return 0;
+int
+main ()
+{
+  queue *myBookQueue = new queue (4);
+  myBookQueue->add ("enid blyton", 4);
+  myBookQueue->add ("Harry potter", 2);
+  myBookQueue->add ("sherlock homes", 1);
+  myBookQueue->add ("pokemon", 3);
+
+
+  myBookQueue->display ();
+
+  return 0;
 }
