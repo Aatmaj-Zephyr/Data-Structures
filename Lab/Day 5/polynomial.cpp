@@ -63,14 +63,13 @@ class linkedlist{
 
 linkedlist* addPoly(linkedlist a,linkedlist b){
  linkedlist *c = new linkedlist();
- node *temp1=a.bottom;
- node *temp2=b.bottom;
+ node *temp1=a.bottom->pointer;
+ node *temp2=b.bottom->pointer;
  while(true){
-     cout<<"o";
  if(temp1->value == temp2->value){
      c->add(temp1->value+temp2->value,temp1->priority);
       temp1->point(temp1->pointer->pointer);
-      temp2->point(temp1->pointer->pointer);
+      temp2->point(temp2->pointer->pointer);
  }
  if(temp1->value > temp2->value){
      c->add(temp1->value,temp1->priority);
@@ -78,14 +77,19 @@ linkedlist* addPoly(linkedlist a,linkedlist b){
  }
  if(temp1->value < temp2->value){
      c->add(temp2->value,temp2->priority);
-       temp2->point(temp1->pointer->pointer);
+       temp2->point(temp2->pointer->pointer);
 
  }
  if(temp1->pointer == NULL){
+              cout<<"b";
+
      return c;
  }
 if(temp2->pointer == NULL){
+              cout<<"a";
+
      return c;
+
  }
 
  }
@@ -97,7 +101,7 @@ int main()
 linkedlist *mylink=new linkedlist();
 mylink->add(2,1);
 mylink->add(20,2);
-mylink->add(4,4);
+mylink->add(14,4);
 //mylink->display();
 
 linkedlist *mylink2=new linkedlist();
