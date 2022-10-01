@@ -1,0 +1,170 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next;
+};
+struct node* creation(){
+    int val;
+    printf("\nEnter the head value\n");
+    scanf("%d",&val);
+    struct node* temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=val;
+    temp->next=NULL;
+    return temp;
+}
+void traversal(struct node* head){
+    printf("\n\n");
+    while(head!=NULL){
+        printf("%d ,",head->data);
+        head=head->next;
+    }
+    printf("\n\n");
+}
+void search(struct node* head){
+    int val;
+    printf("\nEnter the element to be searched\n");
+    scanf("%d",&val);
+    while(head!=NULL){
+        if(head->data==val){
+            printf("\nThe element is found\n");
+            return ;
+        }
+        head=head->next;
+    }
+    printf("The element was not found\n");
+}
+struct node* insertionhead(struct node* head){
+    int val;
+    printf("\nEnter the element to be inserted\n");
+    scanf("%d",&val);
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp->data=val;
+    temp->next=head;
+    return temp;
+}
+struct node* insertionend(struct node* head){
+    struct node* ptr=head;
+    int val;
+    printf("\nEnter the element to be inserted\n");
+    scanf("%d",&val);
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp->data=val;
+    while(head->next!=NULL){
+        head=head->next;
+    }
+    temp->next=head->next;
+    head->next=temp;
+    return ptr;
+}
+struct node* insertionatindex(struct node* head){
+    struct node* ptr=head;
+    int val,index;
+    printf("\nEnter the element to be inserted and its index\n");
+    scanf("%d",&val);
+    scanf("%d",&index);
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp->data=val;
+    for(int i=0;i<index-1;i++){
+        head=head->next;
+    }
+    temp->next=head->next;
+    head->next=temp;
+    return ptr;
+}
+struct node* deletionhead(struct node* head){
+    if(head==NULL){
+        printf("\nThe list is empty\n");
+        return head;
+    }
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp=head;
+    head=head->next;
+    free(temp);
+    return head;
+}
+struct node* deletionend(struct node* head){
+    if(head==NULL){
+        printf("\nThe list is empty\n");
+        return head;
+    }
+    struct node* ptr=head;
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp=head;
+    head=head->next;
+    while(head->next!=NULL){
+        head=head->next;
+        temp=temp->next;
+    }
+    temp->next=head->next;
+    free(head);
+    return ptr;
+}
+struct node* deletionatindex(struct node* head){
+    if(head==NULL){
+        printf("\nThe list is empty\n");
+        return head;
+    }
+    struct node* ptr=head;
+    int index;
+    printf("\nEnter the index to be deleted\n");
+    scanf("%d",&index);
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp=head->next;
+    for(int i=0;i<index-1;i++){
+        temp=temp->next;
+    }
+    head->next=temp->next;
+    free(temp);
+    return ptr;
+}
+int main(){
+    struct node* head=(struct node*)malloc(sizeof(struct node));
+    head = creation();
+    int ch=1;
+    while(ch!=0){
+        printf("\nEnter 1 to insert at head\n");
+        printf("Enter 2 to insert at end\n");
+        printf("Enter 3 to insert at index\n");
+        printf("Enter 4 to delete at head\n");
+        printf("Enter 5 to delete at end\n");
+        printf("Enter 6 to delete at index\n");
+        printf("Enter 7 to search\n");
+        printf("Enter 8 to traverse\n");
+        printf("Enter 0 to quit\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:
+            head=insertionhead(head);
+            break;
+        case 2:
+            head=insertionend(head);
+            break;
+        case 3:
+            head=insertionatindex(head);
+            break;
+        case 4:
+            head=deletionhead(head);
+            break;
+        case 5:
+            head=deletionend(head);
+            break;
+        case 6:
+            head=deletionatindex(head);
+            break;
+        case 7:
+            search(head);
+            break;
+        case 8:
+            traversal(head);
+            break;
+        case 0:
+            break;
+        default:
+            printf("\nPlease enter a valid choice\n");
+            break;
+        }
+    }
+    return 0;
+}
