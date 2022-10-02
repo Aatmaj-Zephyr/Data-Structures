@@ -46,23 +46,25 @@ class linkedlist{
         add(new node(NULL,value,priority));
     }
      void display(){
-         node* temp;
-         temp=&*bottom;
-
-        while(temp->pointer!=NULL){
+         node temp;
+         temp.point(bottom->pointer);
+do{
+    cout<<"\n"<<temp.pointer->value<<"*"<<"x^("<<temp.pointer->priority<<")";
             
-            cout<<"\n"<<temp->pointer->value<<"*"<<"x^("<<temp->pointer->priority<<")";
-            
-            temp->point(temp->pointer->pointer);
-        }
+            temp.point(temp.pointer->pointer);
+}
+        while(temp.pointer!=NULL);
+        
     }
     
 };
 
 linkedlist* addPoly(linkedlist a,linkedlist b){
  linkedlist *c = new linkedlist();
- node *temp1=a.bottom;
- node *temp2=b.bottom;
+ node temp1;
+ temp1.point(a.bottom->pointer);
+ node temp2;
+ temp2.point(b.bottom->pointer);
 
  
  
@@ -70,24 +72,24 @@ linkedlist* addPoly(linkedlist a,linkedlist b){
  //Only for integral powers of x
  //assuming sorted polynomials
  int temp3=0;
-  if(temp1->pointer==NULL && temp2->pointer==NULL)
+  if(temp1.pointer==NULL && temp2.pointer==NULL)
  {
      break;
  }
- if(temp1->pointer!=NULL && temp1->pointer->priority==i){
- temp3=temp3+temp1->pointer->value;
- temp1->point(temp1->pointer->pointer);
+ if(temp1.pointer!=NULL && temp1.pointer->priority==i){
+ temp3=temp3+temp1.pointer->value;
+ temp1.point(temp1.pointer->pointer);
  }
  
- if(temp2->pointer!=NULL && temp2->pointer->priority==i){
- temp3=temp3+temp2->pointer->value;
- temp2->point(temp2->pointer->pointer);
+ if(temp2.pointer!=NULL && temp2.pointer->priority==i){
+ temp3=temp3+temp2.pointer->value;
+ temp2.point(temp2.pointer->pointer);
  //cout<<temp3;
  }
  c->add(temp3,i);
 
  }
-
+//a.display();
  return c;
 };
 
@@ -123,11 +125,13 @@ mylink2->add(5,4);
 cout<<"Hello";
 
 //mylink2->display();
-linkedlist *c = subPoly(*mylink,*mylink2);
+linkedlist *c = addPoly(*mylink,*mylink2);
 
 c->display();
+        
 
-linkedlist *d = addPoly(*mylink,*mylink2);
+
+linkedlist *d = subPoly(*mylink,*mylink2);
 d->display();
 
     return 0;
