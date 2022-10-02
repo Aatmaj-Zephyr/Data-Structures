@@ -50,7 +50,9 @@ class linkedlist{
          temp=&*bottom;
 
         while(temp->pointer!=NULL){
+            
             cout<<"\n"<<temp->pointer->value<<"*"<<"x^("<<temp->pointer->priority<<")";
+            
             temp->point(temp->pointer->pointer);
         }
     }
@@ -123,11 +125,11 @@ mylink2->add(5,4);
 cout<<"Hello";
 
 //mylink2->display();
-linkedlist *c = addPoly(*mylink,*mylink2);
+linkedlist *c = subPoly(*mylink,*mylink2);
 
 c->display();
 
-//linkedlist *d = subPoly(*mylink,*mylink2);
+//linkedlist *d = addPoly(*mylink,*mylink2);
 //d->display();
 
     return 0;
