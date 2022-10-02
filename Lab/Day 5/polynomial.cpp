@@ -59,11 +59,9 @@ class linkedlist{
 
 linkedlist* addPoly(linkedlist a,linkedlist b){
  linkedlist *c = new linkedlist();
- node *temp1;
- temp1->point(a.bottom->pointer);
- node *temp2;
- temp2->point(b.bottom->pointer);
- 
+ node *temp1=a.bottom;
+ node *temp2=b.bottom;
+
  
  
  for (int i=0;0==0;i++){
@@ -121,11 +119,16 @@ mylink2->add(7,0);
 mylink2->add(2,1);
 mylink2->add(31,3);
 mylink2->add(5,4);
+
 cout<<"Hello";
+
 //mylink2->display();
 linkedlist *c = addPoly(*mylink,*mylink2);
-//c->display();
-linkedlist *d = subPoly(*mylink,*mylink2);
-d->display();
+
+c->display();
+
+//linkedlist *d = subPoly(*mylink,*mylink2);
+//d->display();
+
     return 0;
 }
