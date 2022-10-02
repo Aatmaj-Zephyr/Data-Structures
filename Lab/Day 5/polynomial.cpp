@@ -87,9 +87,7 @@ linkedlist* addPoly(linkedlist a,linkedlist b){
  c->add(temp3,i);
 
  }
-free(temp2);
-free(temp1);
-free(c);
+
  return c;
 };
 
@@ -129,8 +127,8 @@ linkedlist *c = subPoly(*mylink,*mylink2);
 
 c->display();
 
-//linkedlist *d = addPoly(*mylink,*mylink2);
-//d->display();
+linkedlist *d = addPoly(*mylink,*mylink2);
+d->display();
 
     return 0;
 }
