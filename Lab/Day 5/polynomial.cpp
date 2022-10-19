@@ -91,8 +91,19 @@ linkedlist* addPoly(linkedlist a,linkedlist b){
  }
 //a.display();
  return c;
-};
+}
 
+linkedlist* multiply(linkedlist a,  int constant){
+
+  node* temp=a.bottom;
+ linkedlist *c = new linkedlist();
+    while(temp->pointer!=NULL){
+        c->add(constant*(temp->pointer->value),temp->pointer->priority);
+        temp->point(temp->pointer->pointer);
+    }
+    return c;
+
+}
 linkedlist* minusPoly(linkedlist a){
     node* temp=a.bottom;
  linkedlist *c = new linkedlist();
@@ -134,5 +145,7 @@ c->display();
 linkedlist *d = subPoly(*mylink,*mylink2);
 d->display();
 
+linkedlist *e = multiply(*d,3);
+e->display();
     return 0;
 }
