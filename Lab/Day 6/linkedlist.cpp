@@ -1,6 +1,5 @@
 /******************************************************************************
-Add two polynomials
-
+linkedlist in CPP
 *******************************************************************************/
 #include <iostream>
 
@@ -84,22 +83,21 @@ class linkedlist{
     void Delete(int value){
         
         node *NodeToBeDeleted = findbefore(value);
-        
-        
+
         
         NodeToBeDeleted->point(NodeToBeDeleted->pointer->pointer);
         
     }
      void display(){
          //cannot display empty list
-         node* temp;
-         temp->point(bottom->pointer);
+         node temp;
+         temp.point(bottom->pointer);
 do{
-    cout<<"\n"<<temp->pointer->value;
+    cout<<"\n"<<temp.pointer->value;
             
-            temp->point(temp->pointer->pointer);
+            temp.point(temp.pointer->pointer);
 }
-        while(temp->pointer!=NULL);
+        while(temp.pointer!=NULL);
         
     }
     
