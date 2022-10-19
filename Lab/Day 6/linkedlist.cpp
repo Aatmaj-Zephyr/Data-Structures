@@ -40,7 +40,7 @@ class linkedlist{
     node* findbefore(int value){
         node temp;
         temp.point(bottom);
-        while(temp.pointer!=top){
+        while(&temp.pointer!=NULL){
             if(temp.pointer->pointer->value==value){
                 return temp.pointer;
             }
@@ -82,10 +82,16 @@ class linkedlist{
        }
     }
     void Delete(int value){
+        
         node *NodeToBeDeleted = findbefore(value);
+        
+        
+        
         NodeToBeDeleted->point(NodeToBeDeleted->pointer->pointer);
+        
     }
      void display(){
+         //cannot display empty list
          node* temp;
          temp->point(bottom->pointer);
 do{
@@ -105,11 +111,15 @@ int main()
   
 linkedlist *mylink=new linkedlist();
 mylink->add(2,1);
-mylink->add(20,2);
-mylink->add(280,20);
-mylink->add(281,2);
-//mylink->display();
-mylink->Delete(280);
+
+mylink->Delete(2);
+mylink->add(2,1);
+mylink->add(24,2);
+
+mylink->add(23,2);
+mylink->Delete(23);
+
+
 mylink->display();
 
 
@@ -118,3 +128,6 @@ cout<<"Hello";
 
     return 0;
 }
+
+
+// does not work for last element deletion
